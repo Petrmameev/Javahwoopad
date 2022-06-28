@@ -4,6 +4,18 @@ public class Radio {
     private int currentVolume;
     private int currentWave;
 
+    private int maxWave;
+
+    public Radio() {
+        maxWave = 9;
+
+    }
+
+    public Radio (int waveCount) {
+        maxWave = waveCount - 1;
+
+    }
+
     public int getCurrentVolume() {
         return currentVolume;
     }
@@ -17,7 +29,7 @@ public class Radio {
         if (CurrentVolume < 0) {
             return;
         }
-        if (CurrentVolume > 10) {
+        if (CurrentVolume > 100) {
             return;
         }
         currentVolume = CurrentVolume;
@@ -27,7 +39,7 @@ public class Radio {
         if (CurrentWave < 0) {
             return;
         }
-        if (CurrentWave > 9) {
+        if (CurrentWave > maxWave) {
             return;
         }
         currentWave = CurrentWave;
@@ -43,7 +55,7 @@ public class Radio {
     }
 
     public void setToMaxWave() {
-        currentWave = 9;
+        currentWave = maxWave;
     }
 
     public void setToMinWave() {
@@ -52,11 +64,11 @@ public class Radio {
 
 
     public void increaseVolume() {
-        if (currentVolume < 10) {
+        if (currentVolume < 100) {
             currentVolume = currentVolume + 1;
         }
-        if (currentVolume >= 10) {
-            currentVolume = 10;
+        if (currentVolume >= 100) {
+            currentVolume = 100;
         }
     }
 
@@ -70,7 +82,7 @@ public class Radio {
     }
 
     public void nextWave() {
-        if (currentWave < 9) {
+        if (currentWave < maxWave) {
             currentWave = currentWave + 1;
         } else {
             currentWave = 0;
@@ -83,7 +95,7 @@ public class Radio {
         if (currentWave > 0) {
             currentWave = currentWave - 1;
         } else {
-            currentWave = 9;
+            currentWave = maxWave;
         }
 
 
