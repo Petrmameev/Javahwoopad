@@ -1,33 +1,38 @@
 package ru.netologu.javahwoopad.services;
 
 public class Radio {
-    public int currentVolume;
+    private int currentVolume;
+    private int currentWave;
 
     public int getCurrentVolume() {
         return currentVolume;
     }
 
-    public void increaseVolume() {
-        if (currentVolume < 10) {
-            currentVolume = currentVolume + 1;
-        }
+    public int getCurrentWave() {
+        return currentWave;
     }
 
-    public void reduceVolume() {
-        if (currentVolume > 0) {
-            currentVolume = currentVolume - 1;
+
+    public void setCurrentVolume(int CurrentVolume) {
+        if (CurrentVolume < 0) {
+            return;
         }
+        if (CurrentVolume > 10) {
+            return;
+        }
+        currentVolume = CurrentVolume;
     }
 
-    public void setCurrentVolume(int newCurrentVolume) {
-        if (newCurrentVolume < 0) {
+    public void setCurrentWave(int CurrentWave) {
+        if (CurrentWave < 0) {
             return;
         }
-        if (newCurrentVolume > 10) {
+        if (CurrentWave > 9) {
             return;
         }
-        currentVolume = newCurrentVolume;
+        currentWave = CurrentWave;
     }
+
 
     public void setToMaxVolume() {
         currentVolume = 10;
@@ -37,40 +42,6 @@ public class Radio {
         currentVolume = 0;
     }
 
-    public int currentWave;
-
-    public int getCurrentWave() {
-        return currentWave;
-    }
-
-    public void nextWave() {
-        if (currentWave < 9) {
-            currentWave = currentWave + 1;
-        }
-        if (currentWave == 9) {
-            currentWave = 0;
-        }
-    }
-
-    public void prevWave() {
-        if (currentWave > 0) {
-            currentWave = currentWave - 1;
-        }
-        if (currentWave == 0) {
-            currentWave = 9;
-        }
-    }
-
-    public void setCurrentWave(int newCurrentWave) {
-        if (newCurrentWave > 9) {
-            return;
-        }
-        if (newCurrentWave < 0) {
-            return;
-        }
-        currentWave = newCurrentWave;
-    }
-
     public void setToMaxWave() {
         currentWave = 9;
     }
@@ -78,4 +49,45 @@ public class Radio {
     public void setToMinWave() {
         currentWave = 0;
     }
+
+
+    public void increaseVolume() {
+        if (currentVolume < 10) {
+            currentVolume = currentVolume + 1;
+        }
+        if (currentVolume >= 10) {
+            currentVolume = 10;
+        }
+    }
+
+    public void reduceVolume() {
+        if (currentVolume > 0) {
+            currentVolume = currentVolume - 1;
+        }
+        if (currentVolume <= 0) {
+            currentVolume = 0;
+        }
+    }
+
+    public void nextWave() {
+        if (currentWave < 9) {
+            currentWave = currentWave + 1;
+        } else {
+            currentWave = 0;
+        }
+
+
+    }
+
+    public void prevWave() {
+        if (currentWave > 0) {
+            currentWave = currentWave - 1;
+        } else {
+            currentWave = 9;
+        }
+
+
+    }
+
+
 }

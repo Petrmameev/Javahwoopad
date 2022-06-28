@@ -60,6 +60,16 @@ public class RadioTest {
     }
 
     @Test
+    public void shouldNotIncreaseVolume() {
+        Radio rad = new Radio();
+        rad.setCurrentVolume(10);
+        rad.increaseVolume();
+        int expected = 10;
+        int actual = rad.getCurrentVolume();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
     public void shouldReduceVolume() {
         Radio rad = new Radio();
         rad.setCurrentVolume(5);
@@ -70,6 +80,17 @@ public class RadioTest {
     }
 
     @Test
+    public void shouldNotReduceVolume() {
+        Radio rad = new Radio();
+        rad.setCurrentVolume(-5);
+        rad.reduceVolume();
+        int expected = 0;
+        int actual = rad.getCurrentVolume();
+        Assertions.assertEquals(expected, actual);
+    }
+
+
+    @Test
     public void shouldSetWave() {
         Radio rad = new Radio();
         rad.setCurrentWave(5);
@@ -77,8 +98,9 @@ public class RadioTest {
         int actual = rad.getCurrentWave();
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
-    public void shouldNotSetWaveBelowMin(){
+    public void shouldNotSetWaveBelowMin() {
         Radio rad = new Radio();
         rad.setCurrentWave(-5);
         int expected = 0;
@@ -108,26 +130,36 @@ public class RadioTest {
     @Test
     public void shouldSetNextWave() {
         Radio rad = new Radio();
-        rad.setCurrentWave(5);
+        rad.setCurrentWave(8);
         rad.nextWave();
-        int expected = 6;
+        int expected = 9;
         int actual = rad.getCurrentWave();
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void shoulSetPrevWave() {
+    public void shouldNotSetNextWave() {
         Radio rad = new Radio();
-        rad.setCurrentWave(5);
+        rad.setCurrentWave(9);
+        rad.nextWave();
+        int expected = 0;
+        int actual = rad.getCurrentWave();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSetPrevWave() {
+        Radio rad = new Radio();
+        rad.setCurrentWave(1);
         rad.prevWave();
-        int expected = 4;
+        int expected = 0;
         int actual = rad.getCurrentWave();
         Assertions.assertEquals(expected, actual);
 
     }
 
     @Test
-    public void shoulSetPrevAfterMinWave() {
+    public void shouldSetPrevAfterMinWave() {
         Radio rad = new Radio();
         rad.setCurrentWave(0);
         rad.prevWave();
